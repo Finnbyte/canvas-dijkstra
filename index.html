@@ -17,8 +17,9 @@
         </div>
         <div>
             <button @click="shouldVisualize = !shouldVisualize"
-                x-bind:class="shouldVisualize ? 'btn-active' : 'btn-inactive'">Visualize</button>
+                x-bind:class="shouldVisualize ? 'btn-active' : 'btn-inactive'">Visualize steps</button>
             <button @click="reset()">Reset</button>
+            <button id="run-btn" @click="tryStartDijkstra">Run</button>
         </div>
     </div>
     <script type="module" src="./js/lib.js"></script>

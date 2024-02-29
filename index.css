@@ -18,6 +18,10 @@ body {
     color: white;
 }
 
+#run-btn {
+    float: right;
+}
+
 .page-container {
     display: flex;
     flex-direction: column;
