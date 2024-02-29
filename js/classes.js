@@ -19,7 +19,7 @@ export class GridNode {
     // Maybe assign color dynamically based on class variables?
     const [x, y] = coordinatesFromIndices(this.y, this.x);
     ctx.fillStyle = color;
-    ctx.fillRect(x, y, CELL_SIZE + 1, CELL_SIZE + 1);
+    ctx.fillRect(x+1, y+1, CELL_SIZE-1, CELL_SIZE-1);
   }
 }
 
