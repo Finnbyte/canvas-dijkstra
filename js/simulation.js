@@ -86,15 +86,16 @@ document.addEventListener("alpine:init", () => {
         this.endNode = new GridNode(col, row);
         this.endNode.draw(ctx, END_NODE_COLOR);
         return;
-      } 
-      
+      }
+
+      // Wall was clicked
       const node = this.grid.getNode(row, col);
       if (node.isWall) {
         node.isWall = false;
-        node.draw(ctx, EMPTY_NODE_COLOR)
+        node.draw(ctx, EMPTY_NODE_COLOR);
       } else {
         node.isWall = true;
-        node.draw(ctx, WALL_COLOR)
+        node.draw(ctx, WALL_COLOR);
       }
     },
 
@@ -142,38 +143,28 @@ document.addEventListener("alpine:init", () => {
 
     dijkstras_visualization() {
       let foundValidPath = false;
-      let visualizing = true;
 
       this.startNode.visited = true;
       const unvisited = [this.startNode];
 
-      const intervalId = setInterval(() => {
-        if (unvisited.length <= 0) {
-          visualizing = false;
-          clearInterval(intervalId);
-        }
+      let animationFrameId = null;
 
+      const update = () => {
         const currentNode = unvisited.shift();
         currentNode.visited = true;
 
-        if (
-          currentNode.y !== this.startNode.y ||
-          currentNode.x !== this.startNode.x
-        ) {
+        if (!currentNode.isEqual(this.startNode)) {
           currentNode.draw(ctx, VISITED_NODE_COLOR);
         }
 
-        if (
-          currentNode.x === this.endNode.x &&
-          currentNode.y === this.endNode.y
-        ) {
+        if (currentNode.isEqual(this.endNode)) {
           foundValidPath = true;
           let temp = currentNode;
           while (temp.prev) {
             temp.draw(ctx, RESULT_PATH_NODE_COLOR);
             temp = temp.prev;
           }
-          clearInterval(intervalId);
+          cancelAnimationFrame(animationFrameId);
         }
 
         const currentNodeNeighbors = this.grid.getNeighbors(
@@ -186,11 +177,17 @@ document.addEventListener("alpine:init", () => {
           neighborNode.prev = currentNode;
           unvisited.push(neighborNode);
         }
-      }, 1000 / VISUALIZATION_FPS);
 
-      if (!foundValidPath && !visualizing) {
-        alert("No valid path was found!");
-      }
+        if (foundValidPath) {
+          cancelAnimationFrame(animationFrameId);
+        } else if (!unvisited.length) {
+          alert("No valid path was found!");
+          cancelAnimationFrame(animationFrameId);
+        } else {
+          animationFrameId = requestAnimationFrame(update);
+        }
+      };
+      requestAnimationFrame(update);
     },
   }));
 });
