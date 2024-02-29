@@ -11,6 +11,15 @@ export class GridNode {
   }
 
   /**
+   * Compares two nodes by position in grid
+   * @param {GridNode} other 
+   * @returns {boolean}
+   */
+  isEqual(other) {
+    return this.x === other.x && this.y === other.y
+  }
+
+  /**
    * Draws this node to the canvas with a color via CanvasRenderingContext2D
    * @param {CanvasRenderingContext2D} ctx
    * @param {string} color - A color as string (e.g. green)
