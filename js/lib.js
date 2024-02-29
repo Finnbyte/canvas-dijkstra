@@ -25,7 +25,7 @@ document.addEventListener("alpine:init", () => {
 
     initialize() {
       this.grid = Grid.initialize(GRID_ROWS_COLS_LENGTH);
-      this.grid.draw_initial(ctx, GRID_SIZE, CELL_SIZE);
+      this.grid.drawInitial(ctx, GRID_SIZE, CELL_SIZE);
     },
 
     /**
@@ -35,7 +35,7 @@ document.addEventListener("alpine:init", () => {
       (this.startNode = null), (this.endNode = null);
       this.grid = Grid.initialize(GRID_ROWS_COLS_LENGTH);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      this.grid.draw_initial(ctx, GRID_SIZE, CELL_SIZE);
+      this.grid.drawInitial(ctx, GRID_SIZE, CELL_SIZE);
     },
 
     /**
