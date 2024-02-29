@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./index.css" rel="stylesheet">
+    <title>Dijkstras's pathfinding visualization</title>
+</head>
+
+<body>
+    <div x-data="simulation" x-init="initialize()" @keyup.enter.document="tryStartDijkstra">
+        <div>
+            <canvas id="canvas" @click="handleCanvasClick" @mousemove="handleCanvasDrawWall"
+                @mousedown="isDrawingWalls = true" @mouseup.document="isDrawingWalls = false" width="600"
+                height="600"></canvas>
+        </div>
+        <div>
+            <button @click="shouldVisualize = !shouldVisualize"
+                x-bind:class="shouldVisualize ? 'btn-active' : 'btn-inactive'">Visualize</button>
+            <button @click="reset()">Reset</button>
+        </div>
+    </div>
+    <script type="module" src="./js/lib.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+
+</html>
