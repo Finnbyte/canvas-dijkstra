@@ -78,10 +78,23 @@ document.addEventListener("alpine:init", () => {
 
       if (!this.startNode) {
         this.startNode = new GridNode(col, row);
-        this.startNode.draw(ctx, "red");
-      } else if (!this.endNode) {
+        this.startNode.draw(ctx, START_NODE_COLOR);
+        return;
+      }
+
+      if (!this.endNode) {
         this.endNode = new GridNode(col, row);
-        this.endNode.draw(ctx, "green");
+        this.endNode.draw(ctx, END_NODE_COLOR);
+        return;
+      } 
+      
+      const node = this.grid.getNode(row, col);
+      if (node.isWall) {
+        node.isWall = false;
+        node.draw(ctx, EMPTY_NODE_COLOR)
+      } else {
+        node.isWall = true;
+        node.draw(ctx, WALL_COLOR)
       }
     },
 
