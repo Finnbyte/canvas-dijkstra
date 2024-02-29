@@ -64,7 +64,7 @@ document.addEventListener("alpine:init", () => {
       const [row, col] = indicesFromCoordinates(event.clientX, event.clientY);
       const node = this.grid.getNode(row, col);
       node.isWall = true;
-      node.draw(ctx, "gray");
+      node.draw(ctx, WALL_COLOR);
     },
 
     /**
@@ -94,14 +94,17 @@ document.addEventListener("alpine:init", () => {
         const currentNode = unvisited.shift();
         currentNode.visited = true;
 
+        // Found ending
         if (
           currentNode.x === this.endNode.x &&
           currentNode.y === this.endNode.y
         ) {
           foundValidPath = true;
           let temp = currentNode;
+          temp.draw(ctx, END_NODE_COLOR);
+          temp = temp.prev;
           while (temp.prev) {
-            temp.draw(ctx, "green");
+            temp.draw(ctx, RESULT_PATH_NODE_COLOR);
             temp = temp.prev;
           }
           break;
@@ -144,7 +147,7 @@ document.addEventListener("alpine:init", () => {
           currentNode.y !== this.startNode.y ||
           currentNode.x !== this.startNode.x
         ) {
-          currentNode.draw(ctx, "darkgreen");
+          currentNode.draw(ctx, VISITED_NODE_COLOR);
         }
 
         if (
@@ -154,7 +157,7 @@ document.addEventListener("alpine:init", () => {
           foundValidPath = true;
           let temp = currentNode;
           while (temp.prev) {
-            temp.draw(ctx, "green");
+            temp.draw(ctx, RESULT_PATH_NODE_COLOR);
             temp = temp.prev;
           }
           clearInterval(intervalId);
