@@ -46,7 +46,7 @@ export class Grid {
    * Draws the initial grid node outlines
    * @param {CanvasRenderingContext2D} ctx 
    */
-  draw_initial(ctx) {
+  drawInitial(ctx) {
     for (let y = 1; y < GRID_SIZE; y += CELL_SIZE) {
       for (let x = 1; x < GRID_SIZE; x += CELL_SIZE) {
         ctx.strokeStyle = "gray";
