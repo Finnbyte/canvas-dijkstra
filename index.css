@@ -3,7 +3,10 @@ html {
 }
 
 body {
+    display: flex;
+    gap: 2rem;
     height: 100vh;
+    margin-right: 8rem;
 }
 
 .btn-active {
