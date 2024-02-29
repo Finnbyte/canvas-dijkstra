@@ -1,6 +1,6 @@
 import { GridNode, Grid } from "./classes.js";
 import { indicesFromCoordinates } from "./canvas_helpers.js";
-import { GRID_ROWS_COLS_LENGTH, GRID_SIZE, CELL_SIZE, VISUALIZATION_FPS } from "./constants.js";
+import { GRID_ROWS_COLS_LENGTH, GRID_SIZE, CELL_SIZE, VISUALIZATION_FPS, WALL_COLOR, START_NODE_COLOR, END_NODE_COLOR, RESULT_PATH_NODE_COLOR, VISITED_NODE_COLOR, EMPTY_NODE_COLOR } from "./constants.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
