@@ -1,4 +1,4 @@
-# canvas_dijkstra
+# canvas-dijkstra
 Visualizing the famous Dijkstra's algorithm using HTML canvas
 
 ## Quickstart
